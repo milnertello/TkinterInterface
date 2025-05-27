@@ -1,0 +1,380 @@
+:root {
+    --primary-color: #ff704d;
+    --secondary-color: #ff8533;
+    --accent-color: #ffa366;
+    --background-color: #fff3e6;
+    --card-background: #ffffff;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --border-color: #e0e0e0;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.restaurant-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 0 0 20px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.menu-item-content {
+    text-align: center;
+}
+
+.dish-name {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.dish-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.quantity-controls {
+    margin-bottom: 1.5rem;
+}
+
+.quantity-controls .form-label {
+    font-weight: bold;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+}
+
+.quantity-input {
+    max-width: 180px;
+    margin: 0 auto;
+}
+
+.quantity-btn {
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--secondary-color) !important;
+    color: var(--secondary-color) !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.quantity-input input {
+    border: 2px solid var(--border-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 45px;
+}
+
+.add-to-order-btn {
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    min-height: 60px;
+}
+
+.add-to-order-btn:hover {
+    background-color: var(--secondary-color) !important;
+    transform: scale(1.05);
+}
+
+/* Order Section */
+.order-section {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    top: 2rem;
+}
+
+.order-summary {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.order-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.order-item-name {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.remove-item-btn:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.order-item-details {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.order-totals {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.order-totals .row {
+    margin-bottom: 0.5rem;
+}
+
+.order-totals .total-row {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    border-top: 2px solid var(--primary-color);
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.empty-order {
+    color: var(--text-light);
+}
+
+/* Action Buttons */
+.order-actions {
+    margin-top: 1.5rem;
+}
+
+.btn-xl {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    min-height: 65px;
+    border: none;
+}
+
+.btn-xl:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-success {
+    background-color: var(--success-color) !important;
+}
+
+.btn-danger {
+    background-color: var(--danger-color) !important;
+}
+
+.btn-info {
+    background-color: var(--info-color) !important;
+}
+
+.btn-xl:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Toast Notifications */
+.toast {
+    background-color: white;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.toast-header {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.toast-body {
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .container-fluid {
+        padding: 0.5rem;
+    }
+    
+    .menu-item {
+        padding: 1rem;
+    }
+    
+    .dish-name {
+        font-size: 1.3rem;
+    }
+    
+    .dish-price {
+        font-size: 1.5rem;
+    }
+    
+    .btn-xl {
+        font-size: 1.1rem;
+        min-height: 55px;
+        padding: 12px 20px;
+    }
+    
+    .order-section {
+        margin-top: 2rem;
+        position: static !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .restaurant-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .menu-item {
+        padding: 0.8rem;
+    }
+    
+    .quantity-input {
+        max-width: 150px;
+    }
+    
+    .quantity-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .quantity-input input {
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for adding items */
+@keyframes addToCart {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.add-animation {
+    animation: addToCart 0.3s ease-in-out;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top: 2px solid transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Wasi de Sabor Peruano</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="restaurant-header text-center py-4 mb-4">
+            <h1 class="display-4 fw-bold text-white">
+                <i class="fas fa-utensils me-3"></i>
+                Restaurante Wasi de Sabor Peruano
+            </h1>
+            <p class="lead text-white-50">Auténtica cocina peruana para tu paladar</p>
+        </header>
+
+        <div class="row">
+            <!-- Menu Section -->
+            <div class="col-lg-8">
+                <div class="menu-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-clipboard-list me-2"></i>
+                        Nuestro Menú
+                    </h2>
+                    
+                    <div class="menu-grid" id="menuGrid">
+                        {% for dish, price in menu.items() %}
+                        <div class="menu-item" data-dish="{{ dish }}" data-price="{{ price }}">
+                            <div class="menu-item-content">
+                                <h4 class="dish-name">{{ dish }}</h4>
+                                <p class="dish-price">S/. {{ "%.2f"|format(price) }}</p>
+                                <div class="quantity-controls">
+                                    <label for="quantity-{{ dish }}" class="form-label">Cantidad:</label>
+                                    <div class="input-group quantity-input">
+                                        <button class="btn btn-outline-secondary quantity-btn" type="button" onclick="decreaseQuantity('{{ dish }}')">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" class="form-control text-center" id="quantity-{{ dish }}" value="1" min="1" max="20">
+                                        <button class="btn btn-outline-secondary quantity-btn" type="button" onclick="increaseQuantity('{{ dish }}')">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-lg add-to-order-btn w-100" onclick="addToOrder('{{ dish }}')">
+                                    <i class="fas fa-cart-plus me-2"></i>
+                                    Agregar al Pedido
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Section -->
+            <div class="col-lg-4">
+                <div class="order-section sticky-top">
+                    <h2 class="section-title">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Mi Pedido
+                    </h2>
+                    
+                    <div class="order-summary" id="orderSummary">
+                        <div class="empty-order text-center py-4">
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No hay productos en el pedido</p>
+                        </div>
+                    </div>
+
+                    <div class="order-actions">
+                        <button class="btn btn-success btn-xl w-100 mb-3" id="finalizeBtn" onclick="finalizeOrder()" disabled>
+                            <i class="fas fa-check-circle me-2"></i>
+                            Finalizar Pedido
+                        </button>
+                        
+                        <button class="btn btn-danger btn-xl w-100 mb-3" id="cancelBtn" onclick="cancelOrder()" disabled>
+                            <i class="fas fa-times-circle me-2"></i>
+                            Cancelar Pedido
+                        </button>
+                        
+                        <button class="btn btn-info btn-xl w-100" onclick="refreshOrder()">
+                            <i class="fas fa-sync-alt me-2"></i>
+                            Actualizar Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong class="me-auto">Notificación</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                <!-- Toast message will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
