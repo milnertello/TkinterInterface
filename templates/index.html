@@ -40,13 +40,16 @@
                                         <button class="btn btn-outline-secondary quantity-btn" type="button" onclick="decreaseQuantity('{{ dish }}')">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input type="number" class="form-control text-center" id="quantity-{{ dish }}" value="1" min="1" max="20">
+                                        <input type="number" class="form-control text-center" id="quantity-{{ dish }}" value="1" min="1" max="20" onchange="updateTotalPrice('{{ dish }}', {{ price }})">
                                         <button class="btn btn-outline-secondary quantity-btn" type="button" onclick="increaseQuantity('{{ dish }}')">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-lg add-to-order-btn w-100" onclick="addToOrder('{{ dish }}')">
+                                <div class="total-price-display mb-3">
+                                    <strong>Total: S/. <span id="total-{{ dish }}">{{ "%.2f"|format(price) }}</span></strong>
+                                </div>
+                                <button class="btn btn-primary btn-xxl add-to-order-btn w-100" onclick="addToOrder('{{ dish }}')">
                                     <i class="fas fa-cart-plus me-2"></i>
                                     Agregar al Pedido
                                 </button>
@@ -83,9 +86,14 @@
                             Cancelar Pedido
                         </button>
                         
-                        <button class="btn btn-info btn-xl w-100" onclick="refreshOrder()">
+                        <button class="btn btn-info btn-xl w-100 mb-3" onclick="refreshOrder()">
                             <i class="fas fa-sync-alt me-2"></i>
                             Actualizar Pedido
+                        </button>
+                        
+                        <button class="btn btn-warning btn-xl w-100" id="printBtn" onclick="printOrder()" disabled>
+                            <i class="fas fa-print me-2"></i>
+                            Imprimir Pedido
                         </button>
                     </div>
                 </div>

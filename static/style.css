@@ -238,6 +238,26 @@ body {
     border: none;
 }
 
+.btn-xxl {
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 20px 30px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    min-height: 75px;
+    border: none;
+}
+
+.total-price-display {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    border: 2px solid var(--accent-color);
+}
+
 .btn-xl:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
@@ -253,6 +273,40 @@ body {
 
 .btn-info {
     background-color: var(--info-color) !important;
+}
+
+.btn-warning {
+    background-color: var(--warning-color) !important;
+}
+
+.btn-xxl:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Print styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .print-content,
+    .print-content * {
+        visibility: visible;
+    }
+    
+    .print-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
 }
 
 .btn-xl:disabled {
