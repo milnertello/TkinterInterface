@@ -111,13 +111,20 @@ def finalize_order():
         order_number = order_counter
         order_counter += 1
         
-        # Clear the order after finalizing
+        # Calculate total from current order before clearing
+        current_order = orders.get(session_id, {})
+        subtotal = sum(MENU[dish] * quantity for dish, quantity in current_order.items())
+        igv = subtotal * 0.18
+        total = subtotal + igv
+        
+        # Clear the order after calculating total
         orders[session_id] = {}
         
         return jsonify({
             'success': True,
-            'message': f'¡Pedido #{order_number} finalizado! Gracias por su compra en Wasi de Sabor Peruano!',
-            'order_number': order_number
+            'message': f'¡Pedido #{order_number} finalizado!\n\n💰 TOTAL A PAGAR: S/. {total:.2f}\n\n¡Gracias por su compra en Wasi de Sabor Peruano!',
+            'order_number': order_number,
+            'total_to_pay': total
         })
     
     except Exception as e:
